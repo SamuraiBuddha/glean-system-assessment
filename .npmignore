@@ -1,0 +1,56 @@
+# Development files
+.git/
+.gitignore
+.env
+.env.*
+*.log
+npm-debug.log*
+
+# Test files
+tests/
+test/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Documentation source files
+docs/
+*.md
+!README.md
+
+# Build artifacts
+dist/
+build/
+*.tgz
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cache
+.glean-cache/
+node_modules/
+.npm/
+
+# Reports
+glean-assessment-report.json
+*.report.json
+
+# Examples (optional - you might want to include these)
+# examples/
+
+# Config files
+.eslintrc*
+.prettierrc*
+.editorconfig
+tsconfig.json
+jest.config.js

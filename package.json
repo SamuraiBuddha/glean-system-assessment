@@ -1,0 +1,56 @@
+{
+  "name": "glean-system-assessment",
+  "version": "1.0.0",
+  "description": "Universal system assessment and port negotiation module for automatic project configuration",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "glean-assess": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:security": "jest tests/security.test.js --verbose",
+    "assess": "node src/cli.js",
+    "demo": "node examples/basic-usage.js",
+    "audit": "npm audit --production",
+    "audit:fix": "npm audit fix --production",
+    "security:check": "npm audit --production && npm run test:security",
+    "security:update": "npm update systeminformation && npm install chalk@5.3.0 --save-exact && npm audit fix --production",
+    "prepublishOnly": "npm run security:check",
+    "publish:npm": "npm publish --access public"
+  },
+  "keywords": [
+    "system-assessment",
+    "port-negotiation",
+    "hardware-detection",
+    "auto-configuration",
+    "bootstrap",
+    "environment-config",
+    "port-management",
+    "system-gleaning",
+    "development-tools"
+  ],
+  "author": "Jordan Ehrig",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuraiBuddha/glean-system-assessment.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SamuraiBuddha/glean-system-assessment/issues"
+  },
+  "homepage": "https://github.com/SamuraiBuddha/glean-system-assessment#readme",
+  "dependencies": {
+    "chalk": "5.3.0",
+    "detect-port": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "ora": "^8.0.1",
+    "systeminformation": "^5.23.7"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
