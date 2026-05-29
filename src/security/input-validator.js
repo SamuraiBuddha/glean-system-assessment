@@ -11,6 +11,8 @@
  * - Prompt injection
  */
 
+import path from 'path';
+
 export class InputValidator {
   /**
    * Validate port number - CRITICAL SECURITY
@@ -92,7 +94,6 @@ export class InputValidator {
     }
 
     // Normalize the path
-    const path = require('path');
     const normalizedPath = path.normalize(inputPath);
 
     // Check for path traversal attempts
@@ -114,7 +115,17 @@ export class InputValidator {
     // Check file extension if specified
     if (allowedExtensions) {
       const ext = path.extname(absolutePath).toLowerCase();
-      if (!allowedExtensions.includes(ext)) {
+      const basename = path.basename(absolutePath);
+
+      // Allow dotfiles (like .env) where the entire name is the extension
+      const isDotfile = basename.startsWith('.') && basename.lastIndexOf('.') === 0;
+
+      if (!isDotfile && !allowedExtensions.includes(ext)) {
+        throw new Error(`${paramName} has disallowed extension: ${ext}`);
+      }
+
+      // For dotfiles, check if the basename itself is allowed
+      if (isDotfile && !allowedExtensions.includes(basename)) {
         throw new Error(`${paramName} has disallowed extension: ${ext}`);
       }
     }

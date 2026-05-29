@@ -331,7 +331,7 @@ export class EnvironmentManager {
     // SECURITY: Validate path before writing to prevent traversal attacks
     const safePath = InputValidator.validatePath(envPath, {
       basePath: process.cwd(),
-      allowedExtensions: ['.env'],
+      allowedExtensions: ['.env', '.env.local', '.env.development', '.env.production'],
       paramName: 'envFile'
     });
 
